@@ -1,0 +1,6 @@
+@SocialCommentsApi_HostAddress = http://localhost:5094
+
+GET {{SocialCommentsApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ETLClientOpinionAnalysis.Presentation.Worker-3b15efe4-f3c0-4b8c-a7d6-9da22ee08ba7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ETLClientOpinionAnalysis.Core.Application\ETLClientOpinionAnalysis.Core.Application.csproj" />
+    <ProjectReference Include="..\ETLClientOpinionAnalysis.Core.Domain\ETLClientOpinionAnalysis.Core.Domain.csproj" />
+    <ProjectReference Include="..\ETLClientOpinionAnalysis.Infrastructure\ETLClientOpinionAnalysis.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

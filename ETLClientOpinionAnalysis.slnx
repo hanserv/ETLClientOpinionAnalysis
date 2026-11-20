@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="SocialCommentsApi/SocialCommentsApi.csproj" />
+  </Folder>
+  <Folder Name="/Source/" />
+  <Folder Name="/Source/Core/">
+    <Project Path="ETLClientOpinionAnalysis.Core.Application/ETLClientOpinionAnalysis.Core.Application.csproj" />
+    <Project Path="ETLClientOpinionAnalysis.Core.Domain/ETLClientOpinionAnalysis.Core.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Source/Infrastructure/">
+    <Project Path="ETLClientOpinionAnalysis.Infrastructure/ETLClientOpinionAnalysis.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Source/Presentation/">
+    <Project Path="ETLClientOpinionAnalysis.Presentation.Worker/ETLClientOpinionAnalysis.Presentation.Worker.csproj" Id="b4ff4069-9ecf-408b-a92f-f40ad44eed59" />
+  </Folder>
+</Solution>
