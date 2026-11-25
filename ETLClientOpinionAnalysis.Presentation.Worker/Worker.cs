@@ -5,11 +5,14 @@ namespace ETLClientOpinionAnalysis.Presentation.Worker
     public class Worker : BackgroundService
     {
         private readonly IExtractionService _extractionService;
+        private readonly IDimensionLoadService _dimensionLoadService;
         private readonly IHostApplicationLifetime _lifetime;
 
-        public Worker(IExtractionService extractionService, IHostApplicationLifetime lifetime)
+        public Worker(IExtractionService extractionService, IDimensionLoadService dimensionLoadService,
+            IHostApplicationLifetime lifetime)
         {
             _extractionService = extractionService;
+            _dimensionLoadService = dimensionLoadService;
             _lifetime = lifetime;
         }
 
@@ -18,6 +21,7 @@ namespace ETLClientOpinionAnalysis.Presentation.Worker
             try
             {
                 await _extractionService.RunAsync(stoppingToken);
+                await _dimensionLoadService.RunAsync(stoppingToken);
             }
             finally
             {

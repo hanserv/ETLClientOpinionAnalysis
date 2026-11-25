@@ -32,5 +32,21 @@ namespace ETLClientOpinionAnalysis.Infrastructure.Repositories
             await JsonSerializer.SerializeAsync(stream, records, JsonOptions, cancellationToken);
         }
 
+        public async Task<IReadOnlyList<T>> ReadAsync<T>(string name, CancellationToken cancellationToken = default) where T : class
+        {
+            var path = Path.Combine(_settings.OutputPath, $"{name}.json");
+
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"No existe el archivo de staging '{path}'. Ejecuta primero la extraccion.");
+            }
+
+            await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
+                bufferSize: 4096, useAsync: true);
+
+            var records = await JsonSerializer.DeserializeAsync<List<T>>(stream, JsonOptions, cancellationToken);
+
+            return records ?? new List<T>();
+        }
     }
 }

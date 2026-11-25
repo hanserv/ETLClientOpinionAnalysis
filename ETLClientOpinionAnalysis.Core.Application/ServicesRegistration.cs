@@ -10,6 +10,7 @@ namespace ETLClientOpinionAnalysis.Core.Application
         {
             #region Services
             services.AddTransient<IExtractionService, ExtractionService>();
+            services.AddTransient<IDimensionLoadService, DimensionLoadService>();
             #endregion
         }
     }

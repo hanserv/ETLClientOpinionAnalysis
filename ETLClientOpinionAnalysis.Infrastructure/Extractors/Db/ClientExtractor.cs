@@ -15,13 +15,16 @@ namespace ETLClientOpinionAnalysis.Infrastructure.Extractors.Db
         public override string SourceName => "clients";
 
         protected override string Query => @"
-            SELECT Id, Name
-            FROM dbo.Clients;";
+            SELECT c.Id, c.Name, co.Name AS CountryName, c.BirthDate
+            FROM dbo.Clients c
+            JOIN dbo.Countries co ON co.Id = c.CountryId;";
 
         protected override Client Map(SqlDataReader reader) => new()
         {
             Id = reader.GetInt32(0),
-            Name = reader.GetString(1)
+            Name = reader.GetString(1),
+            CountryName = reader.GetString(2),
+            BirthDate = reader.GetFieldValue<DateOnly>(3)
         };
     }
 }

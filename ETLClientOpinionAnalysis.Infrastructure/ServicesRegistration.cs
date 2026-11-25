@@ -1,6 +1,7 @@
 ﻿using ETLClientOpinionAnalysis.Core.Domain.Entities.Api;
 using ETLClientOpinionAnalysis.Core.Domain.Entities.Csv;
 using ETLClientOpinionAnalysis.Core.Domain.Entities.Db;
+using ETLClientOpinionAnalysis.Core.Domain.Entities.Dwh.Dimensions;
 using ETLClientOpinionAnalysis.Core.Domain.Interfaces;
 using ETLClientOpinionAnalysis.Core.Domain.Settings;
 using ETLClientOpinionAnalysis.Infrastructure.Extractors.Api;
@@ -22,6 +23,7 @@ namespace ETLClientOpinionAnalysis.Infrastructure
             services.Configure<StagingSettings>(configuration.GetSection("Staging"));
             services.Configure<DatabaseSettings>(configuration.GetSection("Database"));
             services.Configure<ApiSettings>(configuration.GetSection("Api"));
+            services.Configure<WarehouseSettings>(configuration.GetSection("Warehouse"));
             #endregion
 
             #region Http Clients
@@ -44,6 +46,11 @@ namespace ETLClientOpinionAnalysis.Infrastructure
 
             #region Repositories
             services.AddTransient<IStagingRepository, JsonStagingRepository>();
+            services.AddTransient<IDimensionRepository<DimSentiment>, SentimentRepository>();
+            services.AddTransient<IDimensionRepository<DimSource>, SourceRepository>();
+            services.AddTransient<IDimensionRepository<DimDate>, DateRepository>();
+            services.AddTransient<IDimensionRepository<DimProduct>, ProductRepository>();
+            services.AddTransient<IDimensionRepository<DimClient>, ClientRepository>();
             #endregion
         }
     }
